@@ -12,12 +12,14 @@ let scale = 0;
 let historyX = 0;
 let historyY = 0;
 let color = false;
+let drawingMode = false;
 
 const slider1 = document.getElementById("slider1");
 const slider2 = document.getElementById("slider2");
 const slider1Value = document.getElementById("slider1Value");
 const slider2Value = document.getElementById("slider2Value");
 const colorBtn = document.getElementById("colorBtn");
+const drawBtn = document.getElementById("drawBtn");
 
 slider1.addEventListener("change", (e) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -38,7 +40,14 @@ colorBtn.addEventListener("click", (e) => {
   } else {
     colorBtn.innerHTML = "Color";
   }
-  console.log(color);
+});
+drawBtn.addEventListener("click", (e) => {
+  drawingMode = !drawingMode;
+  if (drawingMode) {
+    drawBtn.innerHTML = "Lines";
+  } else {
+    drawBtn.innerHTML = "Points";
+  }
 });
 
 function draw(angle) {
@@ -51,31 +60,34 @@ function draw(angle) {
     let y =
       canvas.height / 2 +
       r * Math.cos(angle * -slider2.value) * Math.sin((angle += scale));
+    if (drawingMode) {
+      if (color) {
+        ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+      } else {
+        ctx.fillStyle = "white";
+      }
+      ctx.beginPath();
+      ctx.arc(x, y, 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
 
-    if (color) {
-      ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
-    } else {
-      ctx.fillStyle = "white";
+    if (!drawingMode) {
+      ctx.beginPath();
+      ctx.lineWidth = 2;
+      if (color) {
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+      } else {
+        ctx.strokeStyle = "white";
+      }
+      ctx.moveTo(x, y);
+      ctx.lineTo(historyX, historyY);
+      ctx.stroke();
     }
-    ctx.beginPath();
-    ctx.arc(x, y, 2, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.lineWidth = 2;
-    if (color) {
-      ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-    } else {
-      ctx.strokeStyle = "white";
-    }
-    ctx.moveTo(x, y);
-    ctx.lineTo(historyX, historyY);
-    ctx.stroke();
 
     historyX = x;
     historyY = y;
   }
 }
-console.log(angle);
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
