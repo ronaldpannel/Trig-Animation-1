@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trig Animation 1</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <canvas class="canvas1" id="canvas1"> </canvas>
+      <div class="controls">
+        <div class="slider1Container">
+        <label class="slider1Label" for="slider1">Slider 1</label>
+        <input
+          type="range"
+          class="slider1"
+          id="slider1"
+          min="0"
+          max="50"
+          value="3"
+          step="0.5"
+        />
+        </div>
+
+        <div class="slider2Container">
+
+        <label class="slider2Label" for="slider2">Slider 2</label>
+        <input
+          type="range"
+          class="slider2"
+          id="slider2"
+          min="0"
+          max="50"
+          value="3"
+          step="0.5"
+        />
+        </div>
+      </div>
+    </div>
+
+    <script src="utilities.js"></script>
+    <script src="vector.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
