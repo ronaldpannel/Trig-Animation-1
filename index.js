@@ -11,11 +11,13 @@ let speed = 0;
 let scale = 0;
 let historyX = 0;
 let historyY = 0;
+let color = false;
 
 const slider1 = document.getElementById("slider1");
 const slider2 = document.getElementById("slider2");
 const slider1Value = document.getElementById("slider1Value");
 const slider2Value = document.getElementById("slider2Value");
+const colorBtn = document.getElementById("colorBtn");
 
 slider1.addEventListener("change", (e) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -29,8 +31,19 @@ slider2.addEventListener("change", (e) => {
   slider2Value.innerHTML = e.target.value;
 });
 
+colorBtn.addEventListener("click", (e) => {
+  color = !color;
+  if (color) {
+    colorBtn.innerHTML = "B & W";
+  } else {
+    colorBtn.innerHTML = "Color";
+  }
+  console.log(color);
+});
+
 function draw(angle) {
   for (let i = 0; i < num; i++) {
+    let hue = Math.PI * 2 * i;
     angle = ((Math.PI * 2) / num) * i;
     let x =
       canvas.width / 2 +
@@ -39,13 +52,21 @@ function draw(angle) {
       canvas.height / 2 +
       r * Math.cos(angle * -slider2.value) * Math.sin((angle += scale));
 
-    ctx.fillStyle = "white";
+    if (color) {
+      ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+    } else {
+      ctx.fillStyle = "white";
+    }
     ctx.beginPath();
-    // ctx.arc(x, y, 2, 0, Math.PI * 2);
+    ctx.arc(x, y, 2, 0, Math.PI * 2);
     ctx.fill();
     ctx.beginPath();
     ctx.lineWidth = 2;
-    ctx.strokeStyle = "white";
+    if (color) {
+      ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+    } else {
+      ctx.strokeStyle = "white";
+    }
     ctx.moveTo(x, y);
     ctx.lineTo(historyX, historyY);
     ctx.stroke();

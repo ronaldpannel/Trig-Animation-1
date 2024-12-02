@@ -26,13 +26,44 @@ body {
 .controls {
     width: 100%;
     height: 200px;
-  
+
+}
+
+.buttonContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 20px;
+    margin-left: 150px;
+    margin-right: auto;
+}
+
+.colorBtn {
+    color: yellow;
+    font-size: 20px;
+    padding: 0 10px;
+    border: 2px yellow solid;
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    scale: 1;
+    transition: all ease-in-out 300ms;
+}
+
+.colorBtn:hover {
+    color: white;
+    border: 2px white solid;
+    scale: 1.5;
+
+
 }
 
 .slider1Container {
     width: 100%;
     margin-top: 10px;
-   
+
+
 }
 
 .slider2Container {
@@ -55,4 +86,8 @@ label {
     color: white;
     margin-left: 20px;
     margin-right: 50px;
+}
+
+input {
+    width: 140px;
 }
