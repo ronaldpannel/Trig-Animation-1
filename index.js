@@ -14,15 +14,19 @@ let historyY = 0;
 
 const slider1 = document.getElementById("slider1");
 const slider2 = document.getElementById("slider2");
+const slider1Value = document.getElementById("slider1Value");
+const slider2Value = document.getElementById("slider2Value");
 
 slider1.addEventListener("change", (e) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   e.target.value;
+  slider1Value.innerHTML = e.target.value;
 });
 
 slider2.addEventListener("change", (e) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   e.target.value;
+  slider2Value.innerHTML = e.target.value;
 });
 
 function draw(angle) {
@@ -63,7 +67,6 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     scale = 0;
   }
-
 }
 animate();
 

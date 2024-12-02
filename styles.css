@@ -22,20 +22,26 @@ body {
     flex-direction: column;
     touch-action: none;
 }
-.controls{
+
+.controls {
     width: 100%;
     height: 200px;
+  
 }
-.slider1Container{
+
+.slider1Container {
     width: 100%;
     margin-top: 10px;
+   
 }
 
 .slider2Container {
     width: 100%;
     margin-top: 10px;
-   
+    touch-action: none;
+
 }
+
 .slider2Container {
     width: 100%;
 }
@@ -50,4 +56,3 @@ label {
     margin-left: 20px;
     margin-right: 50px;
 }
-
